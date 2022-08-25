@@ -58,4 +58,6 @@ public class HomePage {
 
     public void clickOnFacebookButton() { facebookButton.click(); }
 
+    public void clickOnCart() { cartIcon.click(); }
+
 }
