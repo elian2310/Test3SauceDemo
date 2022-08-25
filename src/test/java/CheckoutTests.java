@@ -28,4 +28,22 @@ public class CheckoutTests extends BaseTest {
         CheckoutFinishPage finishPage = new CheckoutFinishPage(DriverManager.getDriver().driver);
         Assert.assertTrue(finishPage.isDisplayedThanksText());
     }
+
+    @Test
+    public void verifyEmptyFirstNameError(){
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
+        loginPage.setUserNameTextBox("standard_user");
+        loginPage.setPasswordTextBox("secret_sauce");
+        loginPage.clickOnLoginButton();
+        HomePage homepage= new HomePage(DriverManager.getDriver().driver);
+        homepage.clickOnAddSauceLabsBackPackToCartButton();
+        homepage.clickOnCart();
+        CartPage cart = new CartPage(DriverManager.getDriver().driver);
+        cart.clickOnCheckoutButton();
+        CheckoutInfoPage checkoutInfo = new CheckoutInfoPage(DriverManager.getDriver().driver);
+        checkoutInfo.setLastNameField("Quispe");
+        checkoutInfo.setPostalCode("1234");
+        checkoutInfo.clickOnContinue();
+        Assert.assertEquals("Error: First Name is required", checkoutInfo.getInfoError());
+    }
 }

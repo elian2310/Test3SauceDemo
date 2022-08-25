@@ -20,6 +20,9 @@ public class CheckoutInfoPage {
     @FindBy(id = "continue")
     WebElement continueButton;
 
+    @FindBy(xpath = "//*[@id=\"checkout_info_container\"]/div/form/div[1]/div[4]/h3")
+    WebElement infoError;
+
     public CheckoutInfoPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -29,4 +32,8 @@ public class CheckoutInfoPage {
     public void setLastNameField(String lastName) { lastNameField.sendKeys(lastName); }
     public void setPostalCode(String postalCode) { postalCodeField.sendKeys(postalCode); }
     public void clickOnContinue() { continueButton.click(); }
+    public String getInfoError(){
+        String res = infoError.getText();
+        return res;
+    }
 }
